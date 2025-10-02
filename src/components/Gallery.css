@@ -1,0 +1,33 @@
+/* src/components/Gallery.css */
+/* --- Estilos para la barra de búsqueda --- */
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.search-container input {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  outline: none; /* Elimina el contorno azul al hacer clic */
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-container input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+.search-container input::placeholder {
+  color: #a9a9a9;
+}
+
+/* --- Fin de la sección de búsqueda --- */
+

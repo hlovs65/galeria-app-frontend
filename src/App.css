@@ -1,0 +1,203 @@
+/* --- 1. Reset Básico / Estilos Generales --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;   
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #242424;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Evita que el contenido toque los bordes en móviles */
+}
+
+
+/* --- 2. Estilos del Encabezado (Header) --- */
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #333;
+    color: whitesmoke;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* --- 3. Estilos de Navegación / Botones --- */
+.botton-nav-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    list-style: none; /* Quita los puntos de las listas */
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin: 50px auto; /* Para centrar y dar espacio arriba/abajo */
+}
+
+.nav-button {
+    display: flex; /* Convierte el enlace en un contenedor flex para organizar el icono y el texto */
+    flex-direction: column; /* O row, si prefieres */
+    justify-content: center; /* Centra contenido en el eje principal (vertical) */
+    align-items: center; /* Centra contenido en el eje cruzado (horizontal) */
+    padding: 15px 25px; /* Espacio interno del "botón" */
+    background-color: #007bff;
+    color: white;
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Efecto al pasar el ratón */
+    min-width: 120px; /* Ancho mínimo para que se vean como botones */
+    text-align: center; /* Asegura que el texto esté centrado si no es una línea */
+}
+
+.nav-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Pequeño efecto de "elevación" */
+}
+
+.nav-button i.material-icons {
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.nav-button span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* --- ESTILOS DE LA GALERÍA --- */
+.gallery-container {
+    display: grid; /* ¡Activa el modo de cuadricula! */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Crea columnas responsivas */
+    gap: 25px; /* Espacio entre los items */
+    max-width: 1200px; /*Limita el ancho de la galeria en monitores grandes */
+    margin: 0 auto; /*Centra la galeria */
+    padding: 20px;
+}
+
+/* Estilos para cada tarjeta de la galería */
+.gallery-item {
+    position: relative; /* Necesario para posicionar el checkbox */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Estilos para las imágenes dentro de cada tarjeta */
+.gallery-item img {
+    width: 100%; /* La imagen ocupará el 100% del ancho de su tarjeta */
+    height: 200px; /* **Altura fija para todas las imágenes**, experimenta con este valor */
+    object-fit: cover;  /* **Recorta la imagen** para que cubra la altura fija sin distorsionarse */
+    display: block; /* Importante para eliminar cualquier espacio extra debajo de la imagen */
+}
+
+/* Estilos para títulos y párrafos. */
+.gallery-item h3 {
+    margin: 10px 10px 0;
+    color: #333;
+}
+
+.gallery-item p {
+    margin: 0 10px 30px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Estilos para el checkbox de selección */
+.select-checkbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 10; /* Asegura que el checkbox esté por encima de otros elementos */
+    background-color: transparent; /* Fondo transparente para el checkbox */
+    border: 2px solid #007bff; /* Borde azul para el checkbox */
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+    appearance: none; /* Quita el estilo por defecto del checkbox */
+    outline: none; /* Quita el contorno al hacer clic */
+}
+
+.select-checkbox:checked {
+    background-color: #007bff; /* Color de fondo cuando está seleccionado */
+    border: 2px solid #0056b3; /* Borde más oscuro cuando está seleccionado */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra para resaltar */
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño del checkbox */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave */
+}
+.select-checkbox:checked::after {
+    content: '✓'; /* Marca de verificación */
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra la marca dentro del checkbox */
+    pointer-events: none; /* Evita que la marca interfiera con los clics */
+}
+
+
+
+/* --- 4. Estilos del Pie de Página (Footer) --- */
+.footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #333;
+    color: whitesmoke;
+    margin-top: 30px;
+}
+
+/* --- MEDIA QUERIES PARA ADAPTABILIDAD --- */
+
+/* Media Query para pantallas medianas (tabletas) */
+@media (max-width: 768px) { /* No mas de 768px de ancho, aplicar estos estilos */
+    .botton-nav-container {
+        gap: 10px;   /* Un poco menos de espacio entre botones */
+    }
+
+    .gallery-container {
+        gap: 15px;
+        padding: 15px;
+    }
+}
+/* Media Query para pantallas pequeñas (moviles) */
+@media (max-width: 556px) { /* No mas de 480px de ancho, aplicar estos estilos */
+    .botton-nav-container {
+        flex-direction: column; /* Apila los botones en una columna en móviles */
+        align-items: stretch; /* Estira los botones para ocupar el ancho disponible */
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .nav-button {
+        width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
+        padding: 10px 15px;
+        flex-direction: row; /* Icono y texto lado a lado dentro del botón */
+        justify-content: center;
+        margin: 0; /* Elimina márgenes extra */
+    }
+
+    .nav-button i.material-icons {
+        font-size: 24px; /*Iconos mas pequeños*/
+        margin-right: 8px; /*Espacio entre icono y texto*/
+        margin-bottom: 0;
+    }
+    .gallery-container {
+         grid-template-columns: 1fr;
+         padding: 10px;
+    }
+} 
