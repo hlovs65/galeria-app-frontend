@@ -1,0 +1,76 @@
+/* src/components/ResendToken.css */
+
+.api-message {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.api-message.success {
+    background-color: #d4edda; /* Verde claro */
+    color: #155724; /* Verde oscuro */
+    border: 1px solid #c3e6cb;
+}
+
+.api-message.error {
+    background-color: #f8d7da; /* Rojo claro */
+    color: #721c24; /* Rojo oscuro */
+    border: 1px solid #f5c6cb;
+}
+/* 🟢 COMPLEMENTO: Mensaje Informativo (ej. Cuenta ya verificada) 🟢 */
+/* Usado cuando la API devuelve un resultado 'info' o 'success' pero es un aviso */
+.api-message.info {
+    background-color: #d1ecf1; /* Azul claro (como un Bootstrap 'info') */
+    color: #0c5460; /* Azul oscuro */
+    border: 1px solid #bee5eb;
+}
+
+/* 🟢 COMPLEMENTO: Estilo para el Mensaje de Razón Inicial 🟢 */
+/* Esta es la alerta que se muestra al cargar la página (invalid_token o missing_token) */
+.reason-message.alert-warning {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background-color: #fff3cd; /* Amarillo claro */
+    color: #856404; /* Naranja/marrón oscuro */
+    border: 1px solid #ffeeba;
+    font-size: 0.9em; /* Ligeramente más pequeño para el texto de advertencia */
+}
+
+/* --- Opcional: Estilo general del contenedor del formulario --- */
+.auth-form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* 🟢 COMPLEMENTO: Contenedor del enlace para espaciado 🟢 */
+.return-link-container {
+    /* Añade espacio por encima del enlace, separándolo del formulario/mensaje */
+    margin-top: 25px; 
+    text-align: center; /* Centra el enlace si lo deseas */
+}
+
+/* 🟢 COMPLEMENTO: Estilo del texto del enlace 🟢 */
+.return-link-text {
+    /* Color que resalta en un fondo oscuro (ej: un azul claro o turquesa) */
+    color: #00BFFF; 
+    text-decoration: none; /* Quita el subrayado predeterminado */
+    display: inline-block;
+    padding: 5px 0; /* Un poco de padding vertical */
+    font-size: 1em;
+}
+
+.return-link-text:hover {
+    text-decoration: underline; /* Muestra el subrayado al pasar el ratón */
+    color: #00FFFF; /* Un color ligeramente diferente al pasar el ratón */
+}

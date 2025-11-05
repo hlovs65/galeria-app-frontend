@@ -1,0 +1,11 @@
+/* Media Query para pantallas pequeñas (moviles) */
+@media (max-width: 556px) { /* No mas de 480px de ancho, aplicar estos estilos */
+    .gallery-header {
+        display: flex;
+        flex-direction: column; /* Apila los botones en una columna en móviles */
+        align-items: stretch; /* Estira los botones para ocupar el ancho disponible */
+        gap: 10px;
+        padding: 10px;
+    }
+
+} 

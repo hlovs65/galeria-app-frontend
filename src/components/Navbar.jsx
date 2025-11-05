@@ -1,8 +1,11 @@
 // src/components/Navbar.jsx
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+
   return (
     <nav>
       <ul className="botton-nav-container">
@@ -29,6 +32,22 @@ const Navbar = () => {
             <i className="material-icons">contact_mail</i>
             <span>Contacto</span>
           </Link>
+        </li>
+        <li>
+          {user && user.username ? (
+            <>
+              <span style={{ color: "blue", fontWeight: "bold" }}>{user.username}</span>
+              <Link to="/" onClick={logout} className="nav-button">
+                <i className="material-icons">logout</i>
+                <span>Logout</span>
+              </Link>
+            </>
+              ) : (
+              <Link to="/login" className="nav-button">
+                <i className="material-icons">login</i>
+                <span>Login</span>
+              </Link>
+          )}
         </li>
       </ul>
     </nav>

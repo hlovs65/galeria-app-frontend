@@ -5,12 +5,15 @@ import { useParams, useNavigate } from "react-router-dom";
 //import imageDatos from "../imageDatos.js"; //importa los datos
 import './ImageDetail.css'
 import { API_BASE_URL } from "../config/apiConfig.js";
+import { useAuth } from "../hooks/useAuth.js"; // Para usar el boton de cerrar sesión
 
 function ImageDetail({ images, onImageUpdate, onImageDelete }) { // Recibe las imágenes como prop
 
   // 1. Usa useParams para obtener el ID de la imagen desde la URL
   const { id } = useParams();  // Obtiene el parámetro de la ruta
   const navigate = useNavigate(); // Hook para navegar programáticamente
+  const { user } = useAuth(); // Hook para obtener información del usuario
+  const puedeGestionar = user && user.role === 'admin'; // Verifica si el usuario tiene rol de admin
 
   const image = images.find((img) => img.id === parseInt(id)); // Busca la imagen correspondiente
 
@@ -113,19 +116,23 @@ function ImageDetail({ images, onImageUpdate, onImageDelete }) { // Recibe las i
               required
             />
           </div>
-          <section className="button-group">
-            <button type="submit">Guardar cambios</button>
-            <button onClick={() => setIsEditing(false)}>Cancelar</button>
-          </section>
+          {puedeGestionar && (
+            <section className="button-group">
+              <button type="submit">Guardar cambios</button>
+              <button onClick={() => setIsEditing(false)}>Cancelar</button>
+            </section>
+          )}
         </form>
       ) : (
         <div>
           <h2>{image.title}</h2>
           <p>{image.description}</p>
-          <section className="button-group">
-            <button onClick={() => setIsEditing(true)} className="edit-button">Editar</button>
-            <button onClick={handleDeleteImage} className="delete-button">Eliminar</button>
-          </section>
+          {puedeGestionar && (
+            <section className="button-group">
+              <button onClick={() => setIsEditing(true)} className="edit-button">Editar</button>
+              <button onClick={handleDeleteImage} className="delete-button">Eliminar</button>
+            </section>
+          )}
         </div>
       )}
       <div>

@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 import "./AddImageForm.css";
 import { API_BASE_URL } from "../config/apiConfig.js";
+import { useAuth } from "../hooks/useAuth.js"; // Para usar el boton de agragar imagen
 
 const AddImageForm = ({ onImageAdd }) => {
+  const { user } = useAuth(); // Obtener el usuario autenticado
+  const puedeGestionar = user && user.role === 'admin'; // Verifica si el usuario tiene rol de admin
+
   // Estado para almacenar la imagen seleccionada
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageFile, setImageFile] = useState(null);
+
+  if (!puedeGestionar) {
+    return (
+      <div className="alert-denied">
+        No tienes permisos para agregar imágenes.
+      </div>
+    ); // No renderiza el formulario si no tiene permisos
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,33 +62,33 @@ const AddImageForm = ({ onImageAdd }) => {
   return (
     <form onSubmit={handleSubmit} className="add-image-form">
       <h3>Agregar Nueva Imagen</h3>
-      <div className="form-group">
-        <label>Título:</label>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label>Descripción:</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label>Archivo de Imagen:</label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImageFile(e.target.files[0])}
-          required
-        />
-      </div>
-      <button type="submit">Agregar Imagen</button>
+          <div className="form-group">
+            <label>Título:</label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Descripción:</label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Archivo de Imagen:</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImageFile(e.target.files[0])}
+              required
+            />
+          </div>
+          <button type="submit">Agregar Imagen</button>
     </form>
   );
 };
