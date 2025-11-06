@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { callResendApi } from '../services/authService.js'; // Importa la función de reenvio de token
-import './ResendToken.css'; // Asegúrate de tener los estilos adecuados
+import './Resendtoken.css'; // Asegúrate de tener los estilos adecuados
 
 const ResendToken = () => {
     // Para leer el estado de error de la URL (?status=invalid_token)
