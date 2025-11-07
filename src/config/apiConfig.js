@@ -24,3 +24,5 @@ export const AUTH_SERVICE_URL = import.meta.env.VITE_AUTH_SERVICE_URL || "http:/
  * Apunta al mismo lugar, pero con un nombre de variable específico.
  */
 export const USER_SERVICE_URL = import.meta.env.VITE_USER_SERVICE_URL || "http://salvadorgaleria.infinityfreeapp.com/user-api";
+
+console.log("URL de Autenticación leída en Vercel:", import.meta.env.VITE_AUTH_SERVICE_URL);
