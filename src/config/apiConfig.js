@@ -17,12 +17,12 @@ export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://galeri
  * Define la URL base para el servicio de AUTENTICACIÓN (Login, Logout, Token Check).
  * Apunta a la nueva carpeta renombrada.
  */
-export const AUTH_SERVICE_URL = import.meta.env.VITE_AUTH_SERVICE_URL || "http://salvadorgaleria.infinityfreeapp.com/user-api";
+export const AUTH_SERVICE_URL = import.meta.env.VITE_AUTH_SERVICE_URL || "https://galeria-user-api.onrender.com";
 
 /**
  * Define la URL base para el servicio de USUARIOS/REGISTRO (Creación de cuenta, register.php).
  * Apunta al mismo lugar, pero con un nombre de variable específico.
  */
-export const USER_SERVICE_URL = import.meta.env.VITE_USER_SERVICE_URL || "http://salvadorgaleria.infinityfreeapp.com/user-api";
+export const USER_SERVICE_URL = import.meta.env.VITE_USER_SERVICE_URL || "https://galeria-user-api.onrender.com";
 
 console.log("URL de Autenticación leída en Vercel:", import.meta.env.VITE_AUTH_SERVICE_URL);
