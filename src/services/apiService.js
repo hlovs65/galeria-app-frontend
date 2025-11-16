@@ -14,12 +14,14 @@ export const registerUser = async (jsonData) => {
       body: JSON.stringify(jsonData), // Envía los datos del formulario
     });
 
+    const data = await response.json(); // Parsea la respuesta JSON
+
     if (!response.ok) {
-      throw new Error('Error al registrar el usuario');
+      throw new Error( data.message || 'Error desconocido del servidor');
     }
 
-    const data = await response.json();
-    return data;
+    return data; // Devuelve los datos de la respuesta de exito.
+    
   } catch (error) {
     console.error('Error en la función registerUser:', error);
     throw error;
