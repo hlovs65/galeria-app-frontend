@@ -4,7 +4,7 @@ import { USER_SERVICE_URL } from '../config/apiConfig'; // importa la URL base d
 // Función para registrar un nuevo usuario
 export const registerUser = async (formData) => {
 
-    const API_REGISTER_URL = `${USER_SERVICE_URL}/api/register`;
+    const API_REGISTER_URL = `${USER_SERVICE_URL}/api/register.php`;
   try {
     const response = await fetch(API_REGISTER_URL, {
       method: 'POST',
