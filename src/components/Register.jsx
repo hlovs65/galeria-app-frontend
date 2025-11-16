@@ -29,18 +29,19 @@ const Register = () => {
             return;
         }
 
-        // PHP espera datos POST (application/x-www-form-urlencoded)
-        const formData = new FormData();
-        formData.append('username', username);
-        formData.append('nombre', nombre);
-        formData.append('email', email);
-        formData.append('password', password);
-        formData.append('confirm-password', confirmPassword);
+        // Construir el objeto JSON para enviar
+        const jsonData = {
+            "username": username,
+            "nombre": nombre,
+            "email": email,
+            "password": password,
+            "confirm-password": confirmPassword
+        };
 
 
         {/** Llamada a la función de registro que esta en apiService.js */}
         try {
-            const response = await registerUser(formData);
+            const response = await registerUser(jsonData);
             setApiMessage({ type: 'success', text: response.message || "Registro exitoso" });
             setTimeout(() => {
                 navigate('/login'); // Redirigir al login después del registro exitoso
