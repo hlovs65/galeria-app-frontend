@@ -1,5 +1,5 @@
 // src/components/ResendToken.jsx 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { callResendApi } from '../services/authService.js'; // Importa la función de reenvio de token
 import './Resendtoken.css'; // Asegúrate de tener los estilos adecuados
@@ -21,13 +21,24 @@ const ResendToken = () => {
     const [isAlreadyVerified, setisAlreadyVerified] = useState(false);
 
     const navigate = useNavigate();
+    // Efecto para prellenar el email si está en el almacenamiento local
+    useEffect(() => {
+        const storedEmail = localStorage.getItem('unverified_email');
+        if (storedEmail) {
+            setEmail(storedEmail);
+            // Opcional: eliminar el email del almacenamiento local después de usarlo
+            localStorage.removeItem('unverified_email');
+            // Actualizar el mensaje de la API
+            setApiMessage({ type: 'info', text: 'Tu sesión requiere verificación. Por favor solicita un nuevo enlace y revisa tu correo electrónico.' });
+        }
+    }, []);
 
 
     // Muestra el mensaje de por qué el usuario está en esta página
     const getReasonMessage = (status) => {
         if (status === 'invalid_token') return "El enlace de verificacion ha expirado o es invalido. Introduce tu correo electronico, para recibir un nuevo enlace.";
         if (status === 'missing_token') return "La verificacion del token es invalido. Introduce tu correo electronico, para recibir un nuevo enlace.";
-        return "Introduce tu correo electronico pata recibir un nuevo enlace, para activar tu cuenta.";
+        return "Introduce tu correo electronico para recibir un nuevo enlace, para activar tu cuenta.";
     };
 
 

@@ -162,7 +162,7 @@ function App() {
             {/* --------------------------------------------*/}
             <Route path='/register' element={<Register />} />
 
-            <Route path='resend_token' element={<ResendToken />} />
+            <Route path='/resend_token' element={<ResendToken />} />
 
             {/* --------------------------------------------*/}
             {/* RUTAS PROTEGIDAS PARA USUARIOS LOGUEADOS */}

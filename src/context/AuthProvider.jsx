@@ -83,6 +83,15 @@ export const AuthProvider = ({ children }) => {
 
             } else {
                 // ERROR (Códigos 400, 401, 403, 500) - Respuesta JSON de error
+
+                // Redireccionar según el código de error 403
+                if (response.status === 403 && apiData.action === 'RESEND_VERIFICATION_EMAIL_NEEDED') {
+                    if (apiData.email) {
+                        // Almacenar el email en el almacenamiento local para usarlo en ResendToken.jsx
+                        localStorage.setItem('unverified_email', apiData.email);
+                    }
+                    navigate('/resend_token');
+                }
                 // Devolver el mensaje de error para que Login.jsx lo muestre
                 return { success: false, message: apiData.message || 'Error desconocido.' };
             }
