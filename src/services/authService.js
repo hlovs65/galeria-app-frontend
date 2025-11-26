@@ -1,4 +1,4 @@
-// src/services/apiService.js
+// src/services/authService.js
 import { AUTH_SERVICE_URL } from '../config/apiConfig'; // importa la URL base de tu API PHP
 
 // Función para registrar un nuevo usuario
@@ -13,11 +13,14 @@ export const callResendApi = async (formData) => {
             },
       body: formData, // Envía los datos del email
     });
-/*
+
     if (!response.ok) {
-      throw new Error('Error al reenviar el correo al usuario');
+        // Asumiendo que PHP devuelve JSON en el cuerpo incluso en el error 400/405
+        const errorBody = await response.json(); 
+        // Lanzamos un Error que será capturado por el 'catch'
+        throw new Error(errorBody.message || `Error del servidor: ${response.status}`); 
     }
-*/
+
     const apiData = await response.json();
     return {
         success: response.ok,
@@ -26,6 +29,78 @@ export const callResendApi = async (formData) => {
     };
   } catch (error) {
     console.error('Error en la función callResendApi:', error);
+    return {
+        success: false,
+        data: { message: "Falla al conectar el servicio." },
+        status: 0
+    };
+  }
+};
+
+// Función para enviar el token de reseteo de contraseña
+export const requestPasswordReset = async (formData) => {
+
+    const API_FORGET_PASSWORD_URL = `${AUTH_SERVICE_URL}/controllers/forget_password_handler.php`;
+  try {
+    const response = await fetch(API_FORGET_PASSWORD_URL, {
+      method: 'POST',
+      headers: {
+                'Content-Type': 'application/x-www-form-urlencoded', 
+            },
+      body: formData, // Envía los datos del email
+    });
+
+    if (!response.ok) {
+        // Asumiendo que PHP devuelve JSON en el cuerpo incluso en el error 400/405
+        const errorBody = await response.json(); 
+        // Lanzamos un Error que será capturado por el 'catch'
+        throw new Error(errorBody.message || `Error del servidor: ${response.status}`); 
+    }
+
+    const apiData = await response.json();
+    return {
+        success: response.ok,
+        data: apiData,
+        status: response.status
+    };
+  } catch (error) {
+    console.error('Error en la función requestPasswordReset:', error);
+    return {
+        success: false,
+        data: { message: "Falla al conectar el servicio." },
+        status: 0
+    };
+  }
+};
+
+// Función para finalizar el reseteo de contraseña con el token
+export const finalizePasswordReset = async (formData) => {
+
+    const API_RESET_PASSWORD_URL = `${AUTH_SERVICE_URL}/controllers/reset_password_handler.php`;
+  try {
+    const response = await fetch(API_RESET_PASSWORD_URL, {
+      method: 'POST',
+      headers: {
+                'Content-Type': 'application/x-www-form-urlencoded', 
+            },
+      body: formData, // Envía los datos del token y la nueva contraseña
+    });
+
+    if (!response.ok) {
+        // Asumiendo que PHP devuelve JSON en el cuerpo incluso en el error 400/405
+        const errorBody = await response.json(); 
+        // Lanzamos un Error que será capturado por el 'catch'
+        throw new Error(errorBody.message || `Error del servidor: ${response.status}`); 
+    }
+    
+    const apiData = await response.json();
+    return {
+        success: response.ok,
+        data: apiData,
+        status: response.status
+    };
+  } catch (error) {
+    console.error('Error en la función finalizePasswordReset:', error);
     return {
         success: false,
         data: { message: "Falla al conectar el servicio." },

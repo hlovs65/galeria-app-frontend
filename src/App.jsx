@@ -15,6 +15,8 @@ import { useAuth } from './hooks/useAuth.js' // Hook personalizado para manejar 
 import Login from './components/login.jsx' // Componente de Login
 import { ProtectedRoute, AuthRoute } from './components/RouteWrappers.jsx'
 import ResendToken from './components/ResendToken.jsx'
+import ForgotPasswordPage from './components/ForgotPasswordPage.jsx' // Componente para enviar correo de reseteo de contraseña
+import ResetPasswordPage from './components/ResetPasswordPage.jsx' // Componente para resetear la contraseña
 
 function App() {
   // ----------------------------------------------------
@@ -163,6 +165,10 @@ function App() {
             <Route path='/register' element={<Register />} />
 
             <Route path='/resend_token' element={<ResendToken />} />
+
+            <Route path='/forgot-password' element={<ForgotPasswordPage />} />
+
+            <Route path= '/reset-password' element={<ResetPasswordPage />} />
 
             {/* --------------------------------------------*/}
             {/* RUTAS PROTEGIDAS PARA USUARIOS LOGUEADOS */}

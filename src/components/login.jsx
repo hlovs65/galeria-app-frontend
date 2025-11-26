@@ -89,6 +89,7 @@ const Login = () => {
                         required
                         disabled={isSubmitting}
                     />
+                    <Link to="/forgot-password" className="forgot-password-link">¿Olvidaste tu contraseña?</Link>
                 </div>
                 {error && <p className="error-message" style={{color: 'red', border: '1px solid red', padding: '10px'}}>{error}</p>}
                 <button type="submit" disabled={isSubmitting} className="submit-button">
