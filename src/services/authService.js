@@ -11,7 +11,7 @@ export const callResendApi = async (formData) => {
       headers: {
                 'Content-Type': 'application/x-www-form-urlencoded', 
             },
-      body: formData, // Envía los datos del email
+      body: formData.toString(), // Envía los datos del email
     });
 
     if (!response.ok) {
@@ -44,9 +44,6 @@ export const requestPasswordReset = async (formData) => {
   try {
     const response = await fetch(API_FORGET_PASSWORD_URL, {
       method: 'POST',
-      headers: {
-                'Content-Type': 'application/x-www-form-urlencoded', 
-            },
       body: formData, // Envía los datos del email
     });
 
@@ -80,9 +77,6 @@ export const finalizePasswordReset = async (formData) => {
   try {
     const response = await fetch(API_RESET_PASSWORD_URL, {
       method: 'POST',
-      headers: {
-                'Content-Type': 'application/x-www-form-urlencoded', 
-            },
       body: formData, // Envía los datos del token y la nueva contraseña
     });
 
