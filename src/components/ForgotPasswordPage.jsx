@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { requestPasswordReset } from '../services/authService.js'; // Importa la función de envio de token por olvido de contraseña
-import './ForgotPassword.css'; // Asegúrate de tener los estilos adecuados
+import './ForgotPasswordPage.css'; // Asegúrate de tener los estilos adecuados
 
 const ForgotPasswordPage = () => {
 
