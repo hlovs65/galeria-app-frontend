@@ -40,7 +40,7 @@ export const callResendApi = async (formData) => {
 // Función para enviar el token de reseteo de contraseña
 export const requestPasswordReset = async (formData) => {
 
-    const API_FORGET_PASSWORD_URL = `${AUTH_SERVICE_URL}/controllers/forget_password_handler.php`;
+    const API_FORGET_PASSWORD_URL = `${AUTH_SERVICE_URL}/controllers/forgot_password_handler.php`;
   try {
     const response = await fetch(API_FORGET_PASSWORD_URL, {
       method: 'POST',
