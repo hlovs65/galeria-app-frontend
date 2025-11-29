@@ -14,13 +14,6 @@ export const callResendApi = async (formData) => {
       body: formData.toString(), // Envía los datos del email
     });
 
-    if (!response.ok) {
-      // Asumiendo que PHP devuelve JSON en el cuerpo incluso en el error 400/405
-      const errorBody = await response.json();
-      // Lanzamos un Error que será capturado por el 'catch'
-      throw new Error(errorBody.message || `Error del servidor: ${response.status}`);
-    }
-
     const apiData = await response.json();
     return {
       success: response.ok,
@@ -46,13 +39,6 @@ export const requestPasswordReset = async (formData) => {
       method: 'POST',
       body: formData, // Envía los datos del email
     });
-
-    if (!response.ok) {
-      // Asumiendo que PHP devuelve JSON en el cuerpo incluso en el error 400/405
-      const errorBody = await response.json();
-      // Lanzamos un Error que será capturado por el 'catch'
-      throw new Error(errorBody.message || `Error del servidor: ${response.status}`);
-    }
 
     const apiData = await response.json();
     return {
@@ -80,23 +66,8 @@ export const finalizePasswordReset = async (formData) => {
       body: formData, // Envía los datos del token y la nueva contraseña
     });
 
-    // INICIO Código Temporal para Debug:
-    console.log("Codigo de estado:", response.status);
-    console.log("Respuesta Ok:", response.ok);
-    const apiData = { message: "Prueba de conexion exitosa." };
+    const apiData = await response.json();
 
-    // FIN Código Temporal para Debug:
-
-    // INICIO COMENTARIZAR codigo temporal para debug
-    //if (!response.ok) {
-    // Asumiendo que PHP devuelve JSON en el cuerpo incluso en el error 400/405
-    //  const errorBody = await response.json();
-    // Lanzamos un Error que será capturado por el 'catch'
-    //  throw new Error(errorBody.message || `Error del servidor: ${response.status}`);
-    //}
-
-    //const apiData = await response.json();
-    // FIN COMENTARIZAR codigo temporal para debug
     return {
       success: response.ok,
       data: apiData,
