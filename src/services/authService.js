@@ -81,31 +81,20 @@ export const finalizePasswordReset = async (formData) => {
     });
 
     // INICIO Código Temporal para Debug:
-    const responseText = await response.text(); // Lee el cuerpo como texto plano
-    console.log("Respuesta CRUDA (Longitud):", responseText.length);
-    console.log("Respuesta CRUDA (Primeros 10 caracteres):", responseText.substring(0, 10));
+    console.log("Codigo de estado:", response.status);
+    console.log("Respuesta Ok:", response.ok);
+    const apiData = { message: "Prueba de conexion exitosa." };
 
-    // Intenta analizar el JSON para confirmar si es la falla:
-    let apiData;
-    try {
-      apiData = JSON.parse(responseText);
-      console.log("Parseo Exitoso:", apiData);
-    } catch (e) {
-      // ⚠️ ESTO SE EJECUTARÁ SI EL JSON ESTÁ CONTAMINADO ⚠️
-      console.log("Error al parsear JSON:", e);
-      console.log("FALLO DE JSON.PARSE: El servidor envió datos contaminados. Cuerpo:", responseText);
-      throw new Error(`Error de comunicación: El servidor envió datos contaminados. Código: ${response.status}`);
-    }    
     // FIN Código Temporal para Debug:
 
-    if (!response.ok) {
-      // Asumiendo que PHP devuelve JSON en el cuerpo incluso en el error 400/405
-      const errorBody = await response.json();
-      // Lanzamos un Error que será capturado por el 'catch'
-      throw new Error(errorBody.message || `Error del servidor: ${response.status}`);
-    }
-
     // INICIO COMENTARIZAR codigo temporal para debug
+    //if (!response.ok) {
+    // Asumiendo que PHP devuelve JSON en el cuerpo incluso en el error 400/405
+    //  const errorBody = await response.json();
+    // Lanzamos un Error que será capturado por el 'catch'
+    //  throw new Error(errorBody.message || `Error del servidor: ${response.status}`);
+    //}
+
     //const apiData = await response.json();
     // FIN COMENTARIZAR codigo temporal para debug
     return {
