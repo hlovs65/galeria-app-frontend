@@ -108,7 +108,7 @@ const ResetPasswordPage = () => {
                             value={password}
                             onChange={(e) => {
                                 const nuevoValor = e.target.value;
-                                setConfirmPassword(nuevoValor);
+                                setPassword(nuevoValor);
                                 validarPassword(nuevoValor)
                             }}
                             onBlur={ocultarRequisitos}
@@ -131,7 +131,7 @@ const ResetPasswordPage = () => {
                             type="password"
                             name="confirm-password"
                             value={confirmPassword}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                             placeholder="Confirma tu Nueva Contraseña"
                             required
                         />
