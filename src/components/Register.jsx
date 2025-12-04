@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/apiService.js'; // Importa la función de registro
 import './Register.css'; // Asegúrate de tener los estilos adecuados
+import './validarPassword.css'; // Importa los estilos para la validación de contraseña
+import { validarPassword } from './validarPassword.js'; // Importa la función de validación de contraseña
 
 const Register = () => {
     // Estado para manejar los datos del formulario
@@ -103,11 +105,22 @@ const Register = () => {
                     <input
                         type="password"
                         name="password"
+                        id="password"
+                        onKeyUp={validarPassword}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Ingresa tu Contraseña"
                         required
                     />
+                </div>
+                <div id="requisitosPassword" className="requisitos-password">
+                    <p>La contraseña debe cumplir con los siguientes requisitos:</p>
+                    <ul>
+                        <li id="longitud" className="invalido">❌ Al menos 8 caracteres</li>
+                        <li id="mayuscula" className="invalido">❌ Al menos una letra mayúscula</li>
+                        <li id="numero" className="invalido">❌ Al menos un número</li>
+                        <li id="caracterEspecial" className="invalido">❌ Al menos un carácter especial (!@#$%^&*)</li>
+                    </ul>
                 </div>
                 <div className='form-group'>
                     <label htmlFor="confirmPassword">Confirmar Contraseña</label>
