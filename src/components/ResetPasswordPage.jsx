@@ -104,6 +104,7 @@ const ResetPasswordPage = () => {
                         <input
                             type="password"
                             name="password"
+                            id="password"
                             value={password}
                             onChange={(e) => {
                                 const nuevoValor = e.target.value;
