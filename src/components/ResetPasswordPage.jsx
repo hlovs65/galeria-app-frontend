@@ -105,24 +105,13 @@ const ResetPasswordPage = () => {
                             type="password"
                             name="password"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Ingresa tu Nueva Contraseña"
-                            required
-                        />
-                    </div>
-                    <div className='form-group'>
-                        <label htmlFor="password">Nueva Contraseña</label>
-                        <input
-                            type="password"
-                            name="confirm-password"
-                            value={confirmPassword}
                             onChange={(e) => {
                                 const nuevoValor = e.target.value;
                                 setConfirmPassword(nuevoValor);
                                 validarPassword(nuevoValor)
                             }}
                             onBlur={ocultarRequisitos}
-                            placeholder="Confirma tu Nueva Contraseña"
+                            placeholder="Ingresa tu Nueva Contraseña"
                             required
                         />
                     </div>
@@ -134,6 +123,17 @@ const ResetPasswordPage = () => {
                             <li id="req-numero" className="invalido">❌ Al menos un número</li>
                             <li id="req-especial" className="invalido">❌ Al menos un carácter especial (!@#$%^&*)</li>
                         </ul>
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="password">Nueva Contraseña</label>
+                        <input
+                            type="password"
+                            name="confirm-password"
+                            value={confirmPassword}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Confirma tu Nueva Contraseña"
+                            required
+                        />
                     </div>
 
                     <button type="submit" disabled={isSubmitting}>
