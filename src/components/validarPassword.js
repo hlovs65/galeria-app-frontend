@@ -1,6 +1,5 @@
 // src/components/validarPassword.js
-export function validarPassword() {
-    const contrasena = document.getElementById("password").value;
+export function validarPassword(contrasena) {
     const requisitosDiv = document.getElementById("requisitosPassword");
 
     // Mostrar los requisitos si hay algún carácter ingresado

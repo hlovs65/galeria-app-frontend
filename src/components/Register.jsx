@@ -106,9 +106,12 @@ const Register = () => {
                         type="password"
                         name="password"
                         id="password"
-                        onKeyUp={validarPassword}
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {
+                            const nuevoValor = e.target.value; // Obtiene la letra recien escrita
+                            setPassword(nuevoValor);           // Actualiza el estado
+                            validarPassword(nuevoValor);       // Ejecuta la validación con el nuevo valor
+                        }}
                         placeholder="Ingresa tu Contraseña"
                         required
                     />
@@ -116,10 +119,10 @@ const Register = () => {
                 <div id="requisitosPassword" className="requisitos-password">
                     <p>La contraseña debe cumplir con los siguientes requisitos:</p>
                     <ul>
-                        <li id="longitud" className="invalido">❌ Al menos 8 caracteres</li>
-                        <li id="mayuscula" className="invalido">❌ Al menos una letra mayúscula</li>
-                        <li id="numero" className="invalido">❌ Al menos un número</li>
-                        <li id="caracterEspecial" className="invalido">❌ Al menos un carácter especial (!@#$%^&*)</li>
+                        <li id="req-longitud" className="invalido">❌ Al menos 8 caracteres</li>
+                        <li id="req-mayuscula" className="invalido">❌ Al menos una letra mayúscula</li>
+                        <li id="req-numero" className="invalido">❌ Al menos un número</li>
+                        <li id="req-especial" className="invalido">❌ Al menos un carácter especial (!@#$%^&*)</li>
                     </ul>
                 </div>
                 <div className='form-group'>
