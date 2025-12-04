@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/apiService.js'; // Importa la función de registro
 import './Register.css'; // Asegúrate de tener los estilos adecuados
 import './validarPassword.css'; // Importa los estilos para la validación de contraseña
-import { validarPassword } from './validarPassword.js'; // Importa la función de validación de contraseña
+import { ocultarRequisitos, validarPassword } from './validarPassword.js'; // Importa la función de validación de contraseña
 
 const Register = () => {
     // Estado para manejar los datos del formulario
@@ -112,6 +112,7 @@ const Register = () => {
                             setPassword(nuevoValor);           // Actualiza el estado
                             validarPassword(nuevoValor);       // Ejecuta la validación con el nuevo valor
                         }}
+                        onBlur={ocultarRequisitos} // Oculta los requisitos al perder el foco
                         placeholder="Ingresa tu Contraseña"
                         required
                     />

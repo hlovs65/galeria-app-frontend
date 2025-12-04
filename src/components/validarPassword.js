@@ -1,4 +1,6 @@
 // src/components/validarPassword.js
+
+// Funcion principal de validacion (exportada para onKeyup/onChange)
 export function validarPassword(contrasena) {
     const requisitosDiv = document.getElementById("requisitosPassword");
 
@@ -30,6 +32,15 @@ export function validarPassword(contrasena) {
     verificarRegla(regex.especial.test(contrasena), "req-especial");
 }
 
+// Funcion de control visual (exportada para OnBlur)
+export function ocultarRequisitos() {
+    const requisitosDiv = document.getElementById("requisitosPassword");
+    if (requisitosDiv) {
+        requisitosDiv.style.display = "none";
+    }
+}
+
+// Función auxiliar para actualizar el estado de cada regla
 function verificarRegla(esValido, idElemento) {
     const elemento = document.getElementById(idElemento);
     
