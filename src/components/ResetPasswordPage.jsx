@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { finalizePasswordReset } from '../services/authService.js'; // Importa la función de envio de token por olvido de contraseña
 import './ResetPasswordPage.css'; // Asegúrate de tener los estilos adecuados
+import './validarPassword.css'; // Asegúrate de tener los estilos adecuados
+import { validarPassword, ocultarRequisitos } from './validarPassword.js';
 
 const ResetPasswordPage = () => {
 
@@ -114,11 +116,26 @@ const ResetPasswordPage = () => {
                             type="password"
                             name="confirm-password"
                             value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            onChange={(e) => {
+                                const nuevoValor = e.target.value;
+                                setConfirmPassword(nuevoValor);
+                                validarPassword(nuevoValor)
+                            }}
+                            onBlur={ocultarRequisitos}
                             placeholder="Confirma tu Nueva Contraseña"
                             required
                         />
                     </div>
+                    <div id="requisitosPassword" className="requisitos-password">
+                        <p>La contraseña debe cumplir con los siguientes requisitos:</p>
+                        <ul>
+                            <li id="req-longitud" className="invalido">❌ Al menos 8 caracteres</li>
+                            <li id="req-mayuscula" className="invalido">❌ Al menos una letra mayúscula</li>
+                            <li id="req-numero" className="invalido">❌ Al menos un número</li>
+                            <li id="req-especial" className="invalido">❌ Al menos un carácter especial (!@#$%^&*)</li>
+                        </ul>
+                    </div>
+
                     <button type="submit" disabled={isSubmitting}>
                         {isSubmitting ? "Actualizando..." : "Actualizar contraseña"}
                     </button>
