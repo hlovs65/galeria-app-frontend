@@ -15,12 +15,14 @@ export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://galeri
 
 /**
  * Define la URL base para el servicio de AUTENTICACIÓN (Login, Logout, Token Check).
+ * "https://galeria-user-api.onrender.com"
  * Apunta a la nueva carpeta renombrada.
  */
-export const AUTH_SERVICE_URL = import.meta.env.VITE_AUTH_SERVICE_URL || "https://galeria-user-api.onrender.com";
+export const AUTH_SERVICE_URL = import.meta.env.VITE_AUTH_SERVICE_URL;
 
 /**
  * Define la URL base para el servicio de USUARIOS/REGISTRO (Creación de cuenta, register.php).
+ * "https://galeria-user-api.onrender.com" 
  * Apunta al mismo lugar, pero con un nombre de variable específico.
  */
-export const USER_SERVICE_URL = import.meta.env.VITE_USER_SERVICE_URL || "https://galeria-user-api.onrender.com";
+export const USER_SERVICE_URL = import.meta.env.VITE_USER_SERVICE_URL;
