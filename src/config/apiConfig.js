@@ -18,6 +18,7 @@ export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://galeri
  * "https://galeria-user-api.onrender.com"
  * Apunta a la nueva carpeta renombrada.
  */
+
 export const AUTH_SERVICE_URL = import.meta.env.VITE_AUTH_SERVICE_URL;
 
 /**
